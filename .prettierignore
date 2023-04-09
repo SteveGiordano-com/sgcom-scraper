@@ -1,0 +1,10 @@
+.DS_STORE
+.env
+.gitignore
+.prettierignore
+.npmrc
+
+*.json
+
+node_modules/
+sandbox/
