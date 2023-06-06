@@ -28,7 +28,6 @@ const main = async () => {
 	}
 
 	const allTweets = [];
-	
 	const browser = await playwright.chromium.launch(browserOptions);
 	const page = await browser.newPage({
 		"bypassCSP": true
@@ -62,11 +61,11 @@ const main = async () => {
 		await page.waitForSelector("article[data-testid='tweet']");
 
 		const tweets = await page.$$("article[data-testid='tweet']");
-
 		const allSpansText = await page.locator("span").allTextContents();
 		const hasPinnedTweet = allSpansText.includes("Pinned Tweet");
 
 		let total = 0;
+
 		for (const tweet of tweets) {
 			total += 1;
 			if (total === 1 && hasPinnedTweet) {
@@ -89,10 +88,7 @@ const main = async () => {
 					tweetUrl.indexOf("/status/") + "/status/".length
 				);
 
-				if (
-					(tweetDate === yesterday || tweetDate === today) &&
-					!isRetweet
-				) {
+				if ((tweetDate === yesterday || tweetDate === today) && !isRetweet) {
 					if (!allTweets.some((tweet) => tweet.id === tweetId)) {
 						allTweets.push({
 							"id": tweetId,
@@ -104,10 +100,7 @@ const main = async () => {
 				} else if (isRetweet) {
 					console.log("Retweet. Continuing to next tweet.");
 					continue;
-				} else if (
-					tweetDate !== yesterday &&
-					tweetDate !== today
-				) {
+				} else if (tweetDate !== yesterday && tweetDate !== today) {
 					console.log("End of today's tweets");
 					finished = true;
 					break;

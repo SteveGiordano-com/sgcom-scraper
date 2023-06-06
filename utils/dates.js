@@ -4,12 +4,12 @@ const yesterdayObj = new Date(todayObj);
 yesterdayObj.setDate(yesterdayObj.getDate() - 1);
 
 const formatDate = (date) => {
-	let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-	let month =
+	const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+	const month =
 		date.getMonth() + 1 < 10
 			? "0" + (date.getMonth() + 1)
 			: date.getMonth() + 1;
-	let year = date.getFullYear();
+	const year = date.getFullYear();
 
 	return year + "-" + month + "-" + day;
 };
